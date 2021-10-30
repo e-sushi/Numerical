@@ -1,0 +1,12 @@
+#define global_
+
+#define local
+
+#define Expect(tok_type)\
+if(curt.type == tok_type) {
+
+#define ElseExpect(tok_type)\
+} else if(curt.type == tok_type) {
+
+#define ElseFail(failcode)\
+} else { failcode }

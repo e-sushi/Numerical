@@ -1,0 +1,9 @@
+Sat Oct 30 13:28:30 2021
+
+[DESHI] Finished console and logging initialization in 3.2911ms
+[DESHI] Finished time initialization in 0.0153ms
+[STBI-ERROR] Failed to load texture: deshi_icon.png; Using default window icon
+[DESHI] Finished input and window initialization in 218.933ms
+[ASSETS-ERROR] Failed to open file: data/cfg/aliases.cfg
+[DESHI] Finished console initialization in 2.145ms
+[ASSETS-ERROR] Failed to open file: data/shaders/base.vert.spv

@@ -1,0 +1,438 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="extra">
+      <UniqueIdentifier>{7d0daf8e-585c-4b54-9179-c4b56dde52ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{6b9b72dd-a556-4b71-92b0-e4dbff78417e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\deshi">
+      <UniqueIdentifier>{7d2cd9cc-4417-4e1b-84a9-c1d30b16398f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="extra\cfg">
+      <UniqueIdentifier>{4cef9034-cbca-43b8-8f3b-c5e5873dc54d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="extra\docs">
+      <UniqueIdentifier>{7bda59fa-4ee3-41fc-8cb8-3b6b776acdd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="extra\fonts">
+      <UniqueIdentifier>{8f889467-96fa-488c-a7f4-d1cb51f9b519}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="extra\misc">
+      <UniqueIdentifier>{45042099-378a-485c-8076-223be06d2eb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="extra\shaders">
+      <UniqueIdentifier>{cccdc140-9aeb-4a85-bb3a-e7503d8c0bd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\suugu">
+      <UniqueIdentifier>{5a55cc2d-6551-46ca-9953-709d717d865c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\deshi\core">
+      <UniqueIdentifier>{33c57827-73fa-4d98-bdd1-701b76b6657e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\deshi\external">
+      <UniqueIdentifier>{d3989ff9-ec99-4949-94b9-20f70e3b4725}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\deshi\geometry">
+      <UniqueIdentifier>{83e48d6c-aaa4-4f66-a5e3-cfa65816d965}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\deshi\math">
+      <UniqueIdentifier>{6442ebde-d8fb-4b20-a248-2728f491a297}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\deshi\utils">
+      <UniqueIdentifier>{8c022efa-5931-4bd3-8d48-3ce752997856}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\deshi\core\renderers">
+      <UniqueIdentifier>{f19c2658-183e-47b7-94b3-b51d472bcea3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\deshi\external\draudio">
+      <UniqueIdentifier>{e942c0e0-06db-4780-a983-eb0328dcc61d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\deshi\external\imgui">
+      <UniqueIdentifier>{e28c4cc3-51d9-4a89-81e1-3ca69da34618}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\deshi\external\stb">
+      <UniqueIdentifier>{4f416955-a38e-4f77-9596-4e0a3cc68613}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\deshi\external\d3dx12">
+      <UniqueIdentifier>{3782a311-bc4b-4948-a8a5-57e1b9a43184}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\deshi\src\defines.h">
+      <Filter>src\deshi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\deshi.h">
+      <Filter>src\deshi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\utils\command.h">
+      <Filter>src\deshi\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\utils\container_manager.h">
+      <Filter>src\deshi\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\utils\Debug.h">
+      <Filter>src\deshi\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\utils\hash.h">
+      <Filter>src\deshi\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\utils\map.h">
+      <Filter>src\deshi\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\utils\optional.h">
+      <Filter>src\deshi\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\utils\RingArray.h">
+      <Filter>src\deshi\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\utils\string.h">
+      <Filter>src\deshi\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\utils\tuple.h">
+      <Filter>src\deshi\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\utils\utils.h">
+      <Filter>src\deshi\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\utils\view.h">
+      <Filter>src\deshi\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\utils\array.h">
+      <Filter>src\deshi\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\utils\color.h">
+      <Filter>src\deshi\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\math\Math.h">
+      <Filter>src\deshi\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\math\matN.h">
+      <Filter>src\deshi\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\math\matrix.h">
+      <Filter>src\deshi\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\math\Quaternion.h">
+      <Filter>src\deshi\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\math\vector.h">
+      <Filter>src\deshi\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\math\VectorMatrix.h">
+      <Filter>src\deshi\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\math\InertiaTensors.h">
+      <Filter>src\deshi\math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\geometry\Edge.h">
+      <Filter>src\deshi\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\geometry\Geometry.h">
+      <Filter>src\deshi\geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\external\stb\stb_image.h">
+      <Filter>src\deshi\external\stb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\external\imgui\imgui_impl_vulkan.h">
+      <Filter>src\deshi\external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\external\imgui\imgui_internal.h">
+      <Filter>src\deshi\external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\external\imgui\imstb_rectpack.h">
+      <Filter>src\deshi\external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\external\imgui\imstb_textedit.h">
+      <Filter>src\deshi\external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\external\imgui\imstb_truetype.h">
+      <Filter>src\deshi\external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\external\imgui\imconfig.h">
+      <Filter>src\deshi\external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\external\imgui\imgui.h">
+      <Filter>src\deshi\external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\external\imgui\imgui_impl_glfw.h">
+      <Filter>src\deshi\external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\external\draudio\dr_flac.h">
+      <Filter>src\deshi\external\draudio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\external\draudio\dr_mp3.h">
+      <Filter>src\deshi\external\draudio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\external\draudio\dr_wav.h">
+      <Filter>src\deshi\external\draudio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\core\armature.h">
+      <Filter>src\deshi\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\core\assets.h">
+      <Filter>src\deshi\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\core\camera.h">
+      <Filter>src\deshi\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\core\console.h">
+      <Filter>src\deshi\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\core\console2.h">
+      <Filter>src\deshi\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\core\imgui.h">
+      <Filter>src\deshi\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\core\input.h">
+      <Filter>src\deshi\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\core\model.h">
+      <Filter>src\deshi\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\core\renderer.h">
+      <Filter>src\deshi\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\core\storage.h">
+      <Filter>src\deshi\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\core\time.h">
+      <Filter>src\deshi\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\core\ui.h">
+      <Filter>src\deshi\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\core\window.h">
+      <Filter>src\deshi\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\utils\string_conversion.h">
+      <Filter>src\deshi\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\core\commands.h">
+      <Filter>src\deshi\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\core\font.h">
+      <Filter>src\deshi\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\core\memory.h">
+      <Filter>src\deshi\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\utils\cstring.h">
+      <Filter>src\deshi\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\external\d3dx12\d3dx12.h">
+      <Filter>src\deshi\external\d3dx12</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\external\imgui\imgui_impl_dx12.h">
+      <Filter>src\deshi\external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\core\io.h">
+      <Filter>src\deshi\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\core\logging.h">
+      <Filter>src\deshi\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\deshi\src\external\stb\stb_truetype.h">
+      <Filter>src\deshi\external\stb</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\deshi\src\deshi.cpp">
+      <Filter>src\deshi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deshi\src\external\imgui\imgui_impl_vulkan.cpp">
+      <Filter>src\deshi\external\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deshi\src\external\imgui\imgui_tables.cpp">
+      <Filter>src\deshi\external\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deshi\src\external\imgui\imgui_widgets.cpp">
+      <Filter>src\deshi\external\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deshi\src\external\imgui\imgui.cpp">
+      <Filter>src\deshi\external\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deshi\src\external\imgui\imgui_demo.cpp">
+      <Filter>src\deshi\external\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deshi\src\external\imgui\imgui_draw.cpp">
+      <Filter>src\deshi\external\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deshi\src\external\imgui\imgui_impl_glfw.cpp">
+      <Filter>src\deshi\external\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deshi\src\core\assets.cpp">
+      <Filter>src\deshi\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deshi\src\core\console.cpp">
+      <Filter>src\deshi\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deshi\src\core\console2.cpp">
+      <Filter>src\deshi\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deshi\src\core\storage.cpp">
+      <Filter>src\deshi\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deshi\src\core\ui.cpp">
+      <Filter>src\deshi\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deshi\src\core\window.cpp">
+      <Filter>src\deshi\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deshi\src\core\renderers\opengl.cpp">
+      <Filter>src\deshi\core\renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deshi\src\core\renderers\vulkan.cpp">
+      <Filter>src\deshi\core\renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deshi\src\core\commands.cpp">
+      <Filter>src\deshi\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deshi\src\core\renderers\directx.cpp">
+      <Filter>src\deshi\core\renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deshi\src\external\imgui\imgui_impl_dx12.cpp">
+      <Filter>src\deshi\external\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deshi\src\core\io.cpp">
+      <Filter>src\deshi\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\deshi\src\core\logging.cpp">
+      <Filter>src\deshi\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\numerical.cpp">
+      <Filter>src\suugu</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\deshi\src\math\mat3.inl">
+      <Filter>src\deshi\math</Filter>
+    </None>
+    <None Include="..\deshi\src\math\mat4.inl">
+      <Filter>src\deshi\math</Filter>
+    </None>
+    <None Include="..\deshi\src\math\vec2.inl">
+      <Filter>src\deshi\math</Filter>
+    </None>
+    <None Include="..\deshi\src\math\vec3.inl">
+      <Filter>src\deshi\math</Filter>
+    </None>
+    <None Include="..\deshi\src\math\vec4.inl">
+      <Filter>src\deshi\math</Filter>
+    </None>
+    <None Include="..\data\shaders\nothing.frag">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\null.frag">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\pbr.frag">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\phong.frag">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\shadowmapDEBUG.frag">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\testing0.frag">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\testing1.frag">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\twod.frag">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\ui.frag">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\wireframe.frag">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\normaldebug.geom">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\utils.glsl">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\base.frag">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\flat.frag">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\lavalamp.frag">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\nothing.vert">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\null.vert">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\offscreen.vert">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\pbr.vert">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\phong.vert">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\shadowmapDEBUG.vert">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\testing0.vert">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\testing1.vert">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\twod.vert">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\ui.vert">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\wireframe.vert">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\base.vert">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\fixedimguishader.vert">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\flat.vert">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="..\data\shaders\lavalamp.vert">
+      <Filter>extra\shaders</Filter>
+    </None>
+    <None Include="cpp.hint">
+      <Filter>extra\misc</Filter>
+    </None>
+    <None Include="..\.gitmodules">
+      <Filter>extra\misc</Filter>
+    </None>
+    <None Include="..\.gitignore">
+      <Filter>extra\misc</Filter>
+    </None>
+    <None Include="Numerical.vcxproj">
+      <Filter>extra\misc</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\vk_layer_settings.txt">
+      <Filter>extra\misc</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="debugvis.natvis">
+      <Filter>extra\misc</Filter>
+    </Natvis>
+  </ItemGroup>
+</Project>
