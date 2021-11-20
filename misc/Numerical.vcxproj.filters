@@ -25,9 +25,6 @@
     <Filter Include="extra\shaders">
       <UniqueIdentifier>{cccdc140-9aeb-4a85-bb3a-e7503d8c0bd8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\suugu">
-      <UniqueIdentifier>{5a55cc2d-6551-46ca-9953-709d717d865c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\deshi\core">
       <UniqueIdentifier>{33c57827-73fa-4d98-bdd1-701b76b6657e}</UniqueIdentifier>
     </Filter>
@@ -57,6 +54,9 @@
     </Filter>
     <Filter Include="src\deshi\external\d3dx12">
       <UniqueIdentifier>{3782a311-bc4b-4948-a8a5-57e1b9a43184}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\numerical">
+      <UniqueIdentifier>{5a55cc2d-6551-46ca-9953-709d717d865c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -303,7 +303,7 @@
       <Filter>src\deshi\core</Filter>
     </ClCompile>
     <ClCompile Include="..\src\numerical.cpp">
-      <Filter>src\suugu</Filter>
+      <Filter>src\numerical</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -421,9 +421,7 @@
     <None Include="..\.gitignore">
       <Filter>extra\misc</Filter>
     </None>
-    <None Include="Numerical.vcxproj">
-      <Filter>extra\misc</Filter>
-    </None>
+    <None Include="suugu.vcxproj" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\vk_layer_settings.txt">

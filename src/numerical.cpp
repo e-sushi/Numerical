@@ -9,13 +9,9 @@
 #include "core/logging.h"
 
 #include <fstream>
+#include <limits>
 
 struct Point {
-	//for the new equations 
-	// x is rho
-	// v is cursive pi
-	// P is cursive phi
-
 	//in the paper K is momentum g is position
 
 	double pos = 0, mom = 0;
@@ -34,20 +30,20 @@ struct Point {
 // Global Variables
 //
 
-double dt ;//= 0.01; // time step value
-u32    Nt ;//= 50;   // how many time steps you're going to do 
-double Bi ;//= 0;    // initial velocity as a fraction of speed of light
-double Bf ;//= 0.9;  // final velocity
-double L  ;//= 10;   // length of world
-u32    Np ;//= 5;    // 2 * Np + 1 is the number of grid points
+double dt; //= 0.01; // time step value
+u32    Nt; //= 50;   // how many time steps you're going to do 
+double Bi; //= 0;    // initial velocity as a fraction of speed of light
+double Bf; //= 0.9;  // final velocity
+double L;  //= 10;   // length of world
+u32    Np; //= 5;    // 2 * Np + 1 is the number of grid points
 
-double m   ;//= 1;
-double mm  ;//= m*m;
-double mmm ;//= m*m*m;
+double m;   //= 1;
+double mm;  //= m*m;
+double mmm; //= m*m*m;
 		
-double g   ;//= 0.2;
-double gg  ;//= g*g;
-double ggg ;//= g*g*g;
+double g;   //= 0.2;
+double gg;  //= g*g;
+double ggg; //= g*g*g;
 
 u32    NN = 0;    // num of time steps taken
 
@@ -69,7 +65,7 @@ double sech(double p) {
 
 //non linear term helper func
 inline double NLT(double curr) {
-	return -mm * curr - 4 * gg * (curr * curr * curr);
+	return -mm * curr + 4 * gg * (curr * curr * curr);
 }
 
 //
@@ -175,9 +171,11 @@ array<double> Hsc;  //energy of just the soliton
 //visualization arrays
 array<float> posshow;
 
+array<float> d2error;
+
 //4th order Runge Kutta scheme
 void do_math() {
-	double dx = L / (2 * Np + 1);
+	double dx = L / (2 * Np);
 
 	//Runge Kutta iterations 
 	for (u32 ITERidx = 0; ITERidx < pointIter.count; ITERidx++) {
@@ -203,8 +201,8 @@ void do_math() {
 					//if we are in between first and last iterations then we must add half of the last
 					for (Point& p : pointIter) {
 						Point nu;
-						nu.pos + 0.5 * p.posi[RKidx];
-						nu.mom + 0.5 * p.momi[RKidx];
+						nu.pos += p.pos + 0.5 * p.posi[RKidx - 1];
+						nu.mom += p.mom + 0.5 * p.momi[RKidx - 1];
 
 						dummyPoints.add(nu);
 					}
@@ -212,8 +210,8 @@ void do_math() {
 				else {
 					for (Point& p : pointIter) {
 						Point nu;
-						nu.pos + p.posi[RKidx];
-						nu.mom + p.momi[RKidx];
+						nu.pos += p.pos + p.posi[RKidx - 1];
+						nu.mom += p.mom + p.momi[RKidx - 1];
 
 						dummyPoints.add(nu);
 					}
@@ -222,15 +220,15 @@ void do_math() {
 
 
 			{//fill in our dummy derivative using SLAC derivative 
-				for (u32 j = 0; j < 2 * Np + 1; j++) {
+				for (u32 j = 0; j < 2 * Np; j++) {
 					Point sum1, sum2;
 					for (u32 kk = 0; kk < j; kk++) {
 						sum1.pos += ccList[j - 1 - kk] * dummyPoints[kk].pos;
 						sum1.mom += ccList[j - 1 - kk] * dummyPoints[kk].mom;
 					}
-					for (u32 kk = j; kk < 2 * Np; kk++) {
-						sum2.pos += ccList[2 * Np - 1 - kk + j] * dummyPoints[kk].pos;
-						sum2.mom += ccList[2 * Np - 1 - kk + j] * dummyPoints[kk].mom;
+					for (u32 kk = j; kk < 2 * Np - 1; kk++) {
+						sum2.pos += ccList[2 * Np - 2 - kk + j] * dummyPoints[kk + 1].pos;
+						sum2.mom += ccList[2 * Np - 2 - kk + j] * dummyPoints[kk + 1].mom;
 					}
 
 					sum1.pos -= sum2.pos;
@@ -241,40 +239,54 @@ void do_math() {
 			}
 
 			{//fill in our dummy second derivative
-				for (u32 j = 0; j < 2 * Np + 1; j++) {
+				for (u32 j = 0; j < 2 * Np; j++) {
 					Point sum1, sum2;
 					for (u32 kk = 0; kk < j; kk++) {
 						sum1.pos += d2ccList[j - 1 - kk] * dummyPoints[kk].pos;
 					}
-					for (u32 kk = j; kk < 2 * Np; kk++) {
+					for (u32 kk = j + 1; kk < 2 * Np; kk++) {
 						sum2.pos += d2ccList[2 * Np - 1 - kk + j] * dummyPoints[kk].pos;
 					}
 
+					//double coeff = (-(M_PI * M_PI) / (3 * (4 * Np * Np * dx * dx)) * (4 * Np * Np - 1)) * dummyPoints[j].pos;
+
+
+					sum1.pos += (-(M_PId * M_PId) / (3 * (4 * Np * Np * dx * dx)) * (4 * Np * Np - 1)) * dummyPoints[j].pos;
 					sum1.pos -= sum2.pos;
-					sum1.pos += (-(M_PI * M_PI) / (3 * dx * dx) * (1 - 1 / (2 * Np + 1)) * (1 - 2 / (2 * Np + 1))) * dummyPoints[j].pos;
+
+					//sum1.pos -= 0.8843e-5;
 
 					dummyD2PosPoints.add(sum1);
 				}
 			}
 
 			{//Non Linear Term List
-				for (u32 j = 0; j < 2 * Np + 1; j++) {
+				for (u32 j = 0; j < 2 * Np; j++) {
 					dummyNLTList.add(NLT(dummyPoints[j].pos));
 				}
 			}
+			
+			//d2error.clear();
+			//static u32 latch = 1;
+			//if(latch) {//DEBUG for displaying d2
+			//	for (u32 i = 0; i < 2 * Np; i++) {
+			//		d2error.add(dummyD2PosPoints[i].pos - dummyNLTList[i]);
+			//	}
+			//	latch = 0;
+			//}
 
 			{//Riemann Sums
-				for (u32 j = 0; j < 2 * Np; j++) {
-					RS1 += dx * ((dummyPoints[j].mom + dummyPoints[j + 1].mom) * (dummyDPoints[j].pos + dummyDPoints[j + 1].pos) / 2);
-					RS2 += dx * ((PsiZeroList[j] + PsiZeroList[j + 1]) * (dummyDPoints[j].pos + dummyDPoints[j + 1].pos) / 2);
-					RS3 += dx * ((PsiZeroList[j] + PsiZeroList[j + 1]) * ((dummyD2PosPoints[j].pos - dummyNLTList[j]) + (dummyD2PosPoints[j + 1].pos - dummyNLTList[j + 1])) / 2);
-					RS4 += dx * ((PsiZeroList[j] + PsiZeroList[j + 1]) * (dummyDPoints[j].mom + dummyDPoints[j + 1].mom) / 2);
+				for (u32 j = 0; j < 2 * Np - 1; j++) {
+					RS1 += dx * ((dummyPoints[j].mom + dummyPoints[j + 1].mom) * (dummyDPoints[j].pos + dummyDPoints[j + 1].pos)) / 4;
+					RS2 += dx * ((PsiZeroList[j] + PsiZeroList[j + 1]) * (dummyDPoints[j].pos + dummyDPoints[j + 1].pos)) / 4;
+					RS3 += dx * ((PsiZeroList[j] + PsiZeroList[j + 1]) * ((dummyD2PosPoints[j].pos - dummyNLTList[j]) + (dummyD2PosPoints[j + 1].pos - dummyNLTList[j + 1]))) / 4;
+					RS4 += dx * ((PsiZeroList[j] + PsiZeroList[j + 1]) * (dummyDPoints[j].mom + dummyDPoints[j + 1].mom)) / 4;
 				}
 
-				RS1 += dx * (dummyPoints.last->mom - dummyPoints[0].mom) * (dummyDPoints.last->pos - dummyDPoints[0].pos) / 2;
-				RS2 += dx * (*PsiZeroList.last - PsiZeroList[0]) * (dummyDPoints.last->pos - dummyDPoints[0].pos) / 2;
-				RS3 += dx * (*PsiZeroList.last - PsiZeroList[0]) * ((dummyD2PosPoints.last->pos - *dummyNLTList.last) + (dummyD2PosPoints[0].pos - dummyNLTList[0])) / 2;
-				RS4 += dx * (*PsiZeroList.last - PsiZeroList[0]) * (dummyDPoints.last->mom - dummyDPoints[0].mom) / 2;
+				RS1 += dx * (dummyPoints.last->mom - dummyPoints[0].mom) * (dummyDPoints.last->pos - dummyDPoints[0].pos) / 4;
+				RS2 += dx * (*PsiZeroList.last - PsiZeroList[0]) * (dummyDPoints.last->pos - dummyDPoints[0].pos) / 4;
+				RS3 += dx * (*PsiZeroList.last - PsiZeroList[0]) * ((dummyD2PosPoints.last->pos - *dummyNLTList.last) - (dummyD2PosPoints[0].pos - dummyNLTList[0])) / 4;
+				RS4 += dx * (*PsiZeroList.last - PsiZeroList[0]) * (dummyDPoints.last->mom - dummyDPoints[0].mom) / 4;
 			}
 
 
@@ -285,7 +297,7 @@ void do_math() {
 				double term0 = t0n * t0n / (2 * RS2 * RS2);
 
 				double term1 = 0;
-				for (u32 j = 0; j < 2 * Np; j++) {
+				for (u32 j = 0; j < 2 * Np - 1; j++) {
 					double lt1 = (dummyPoints[j].mom + dummyPoints[j + 1].mom)   / 2;
 					double lt2 = (dummyDPoints[j].pos + dummyDPoints[j + 1].pos) / 2;
 					double lt3 = (dummyPoints[j].pos + dummyPoints[j + 1].pos)   / 2;
@@ -315,7 +327,7 @@ void do_math() {
 				double term0 = t0n * t0n / (2 * RS2 * RS2);
 
 				double term1 = 0;
-				for (u32 j = 0; j < 2 * Np; j++) {
+				for (u32 j = 0; j < 2 * Np - 1; j++) {
 					double lt1 = (dummyPoints[j].mom + dummyPoints[j + 1].mom)   / 2;
 					double lt2 = (dummyDPoints[j].pos + dummyDPoints[j + 1].pos) / 2;
 					double lt3 = (dummyPoints[j].pos + dummyPoints[j + 1].pos)   / 2;
@@ -339,9 +351,9 @@ void do_math() {
 			}
 
 
-			for (u32 j = 0; j < 2 * Np + 1; j++) {
-				pointIter[RKidx].pos = dt * ((PList[NN + 1] + RS1) / (RS2 * RS2) * (dummyDPoints[j].pos - RS2 * PsiZeroList[j]) + dummyPoints[j].mom);
-				pointIter[RKidx].mom = 
+			for (u32 j = 0; j < 2 * Np; j++) {
+				pointIter[j].posi[RKidx] = dt * ((PList[NN + 1] + RS1) / (RS2 * RS2) * (dummyDPoints[j].pos - RS2 * PsiZeroList[j]) + dummyPoints[j].mom);
+				pointIter[j].momi[RKidx] = 
 					dt * 
 					((PList[NN + 1] + RS1) / (RS2 * RS2) * (dummyDPoints[j].mom - RS4 * PsiZeroList[j]) - 
 					(((PList[NN + 1] + RS1) * ((PList[NN + 1] + RS1)) / (RS2 * RS2 * RS2) * dPsiZeroList[j] +
@@ -383,7 +395,7 @@ int main() {
 	ifstream file;
 	file.open("C:/Users/sushi/Dropbox/BHRR/initialdata/FSEinitialdata.csv");
 	std::string line;
-
+	
 
 	forI(8) {
 		getline(file, line, (i == 8 - 1) ? '\n' : ',');
@@ -417,39 +429,37 @@ int main() {
 				}
 			}break;
 			case 1: { //psizero
-				forX(idx, 2 * Np + 1) {
-					getline(file, line, (idx == 2 * Np) ? '\n' : ',');
+				forX(idx, 2 * Np) {
+					getline(file, line, (idx == 2 * Np - 1) ? '\n' : ',');
 					PsiZeroList.add(stod(line));
 				}
 			}break;
 			case 2: { //dpsizero
-				forX(idx, 2 * Np + 1) {
-					getline(file, line, (idx == 2 * Np) ? '\n' : ',');
+				forX(idx, 2 * Np) {
+					getline(file, line, (idx == 2 * Np - 1) ? '\n' : ',');
 					dPsiZeroList.add(stod(line));
 				}
 			}break;
 			case 3: {
-				forX(idx, 2 * Np) {
-					getline(file, line, (idx == 2 * Np - 1) ? '\n' : ',');
+				forX(idx, 2 * Np - 1) {
+					getline(file, line, (idx == 2 * Np - 2) ? '\n' : ',');
 					ccList.add(stod(line));
 				}
 			}break;
 			case 4: {
-				forX(idx, 2 * Np) {
-					getline(file, line, (idx == 2 * Np - 1) ? '\n' : ',');
+				forX(idx, 2 * Np - 1) {
+					getline(file, line, (idx == 2 * Np - 2) ? '\n' : ',');
 					d2ccList.add(stod(line));
 				}
 			}break;
 			case 5: {
-				forX(idx, 2 * Np + 1) {
+				forX(idx, 2 * Np) {
 					Point nu;
 					getline(file, line, ',');
 					nu.pos = stod(line);
 					getline(file, line, ',');
 					nu.mom = stod(line);
 					pointIter.add(nu);
-					//idx++;
-
 				}
 			}break;
 		}
@@ -470,24 +480,28 @@ int main() {
 
 		{//debug area
 			static int latch = 0;
+			static int frames = 0;
+			if (DeshInput->LMousePressed()) frames = 0;
 
-			//if (!latch || DeshInput->LMousePressed()){
+			if (frames < 10) {
 				do_math();
 
-				forI(nextPointIter.count) {
-					Log("", "last ", TOSTRING(pointIter[i].pos), " next ", TOSTRING(nextPointIter[i].pos));
-				}
+				//forI(nextPointIter.count) {
+				//	Log("", "last ", TOSTRING(pointIter[i].pos), " next ", TOSTRING(nextPointIter[i].pos));
+				//}
 				pointIter = nextPointIter;
 
 				NN++;
-				latch++;
-		//	}
+				frames++;
+			}
+
 			ImGui::SetNextWindowPos(ImVec2(0, 0));
 			ImGui::SetNextWindowSize(ImVec2(DeshWindow->width, DeshWindow->height));
 			ImGui::Begin("graph", 0, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize);
-			ImGui::PlotLines("wave", &posshow[0], posshow.count, 0, (const char*)0, -10, 10, ImVec2(800, 800));
+			ImGui::PlotLines("##wave", &posshow[0], posshow.count, 0, (const char*)0, -10, 10, ImVec2(300, 300));
+			//ImGui::PlotLines("##wa", &d2error[0], d2error.count, 0, (const char*)0, -2e-5, 2e-5, ImVec2(300, 300));
 			ImGui::SameLine();
-			ImGui::Text(TOSTRING(latch).str);
+			ImGui::Text(TOSTRING(NN).str);
 			ImGui::End();
 			
 		}
