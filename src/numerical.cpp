@@ -434,51 +434,44 @@ int main() {
 		}
 	}
 
-	//getline(file, line, ',');
-	forI(6) {
-		switch (i) {
-			case 0: { //Plist
-				forX(idx, Nt) {
-					getline(file, line, (idx == Nt - 1) ? '\n' : ',');
-					PList.add(stod(line));
-				}
-			}break;
-			case 1: { //psizero
-				forX(idx, 2 * Np) {
-					getline(file, line, (idx == 2 * Np - 1) ? '\n' : ',');
-					PsiZeroList.add(stod(line));
-				}
-			}break;
-			case 2: { //dpsizero
-				forX(idx, 2 * Np) {
-					getline(file, line, (idx == 2 * Np - 1) ? '\n' : ',');
-					dPsiZeroList.add(stod(line));
-				}
-			}break;
-			case 3: {
-				forX(idx, 2 * Np - 1) {
-					getline(file, line, (idx == 2 * Np - 2) ? '\n' : ',');
-					ccList.add(stod(line));
-				}
-			}break;
-			case 4: {
-				forX(idx, 2 * Np - 1) {
-					getline(file, line, (idx == 2 * Np - 2) ? '\n' : ',');
-					d2ccList.add(stod(line));
-				}
-			}break;
-			case 5: {
-				forX(idx, 2 * Np) {
-					Point nu;
-					getline(file, line, ',');
-					nu.pos = stod(line);
-					getline(file, line, ',');
-					nu.mom = stod(line);
-					pointIter.add(nu);
-				}
-			}break;
-		}
+	
+	//Plist
+	forX(idx, Nt) {
+		getline(file, line, (idx == Nt - 1) ? '\n' : ',');
+		PList.add(stod(line));
 	}
+			
+	//psizero
+	forX(idx, 2 * Np) {
+		getline(file, line, (idx == 2 * Np - 1) ? '\n' : ',');
+		PsiZeroList.add(stod(line));
+	}
+			
+	//dpsizero
+	forX(idx, 2 * Np) {
+		getline(file, line, (idx == 2 * Np - 1) ? '\n' : ',');
+		dPsiZeroList.add(stod(line));
+	}
+			
+	forX(idx, 2 * Np - 1) {
+		getline(file, line, (idx == 2 * Np - 2) ? '\n' : ',');
+		ccList.add(stod(line));
+	}
+			
+	forX(idx, 2 * Np - 1) {
+		getline(file, line, (idx == 2 * Np - 2) ? '\n' : ',');
+		d2ccList.add(stod(line));
+	}
+			
+	forX(idx, 2 * Np) {
+		Point nu;
+		getline(file, line, ',');
+		nu.pos = stod(line);
+		getline(file, line, ',');
+		nu.mom = stod(line);
+		pointIter.add(nu);
+	}
+			
 
 	
 	file.close();
