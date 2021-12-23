@@ -6,7 +6,7 @@
 #include "utils/array.h"
 #include "utils/map.h"
 #include "math/Math.h"
-#include "core/logging.h"
+#include "core/logger.h"
 
 #include <fstream>
 #include <limits>
@@ -52,10 +52,10 @@ u32    NN = 0;    // num of time steps taken
 //
 
 typedef double (*MathFunc)(double p);
-double riemannSum(double start, double end, double dx, MathFunc function) {
+double riemannSum(double start, double end, double dx, MathFunc func) {
 	double sum = 0;
 	for (double i = start; i < end; i += dx)
-		sum += function(i) * dx;
+		sum += func(i) * dx;
 	return sum;
 }
 
@@ -387,7 +387,22 @@ int main() {
 	//dpsinotVals = dpsinotSample();
 	
 	//init deshi
-	deshi::init();
+	TIMER_START(t_s);
+	Assets::enforceDirectories();
+	Memory::Init(Gigabytes(1), Gigabytes(1));
+	Console2::Init();
+	Logger::Init(5);
+	DeshWindow->Init("deshi", 1280, 720);
+	DeshTime->Init();
+	Render::Init();
+	Storage::Init();
+	DeshiImGui::Init();
+	UI::Init();
+	Cmd::Init();
+
+	DeshWindow->ShowWindow();
+	Log("deshi", "Finished deshi initialization in ", TIMER_END(t_s), "ms");
+
 	Render::UseDefaultViewProjMatrix();
 
 	//gather initial data
@@ -487,7 +502,7 @@ int main() {
 				do_math();
 
 				//forI(nextPointIter.count) {
-				//	Log("", "last ", TOSTRING(pointIter[i].pos), " next ", TOSTRING(nextPointIter[i].pos));
+				//	Log("", "last ", toStr(pointIter[i].pos), " next ", toStr(nextPointIter[i].pos));
 				//}
 				pointIter = nextPointIter;
 
@@ -501,7 +516,7 @@ int main() {
 			ImGui::PlotLines("##wave", &posshow[0], posshow.count, 0, (const char*)0, -10, 10, ImVec2(300, 300));
 			//ImGui::PlotLines("##wa", &d2error[0], d2error.count, 0, (const char*)0, -2e-5, 2e-5, ImVec2(300, 300));
 			ImGui::SameLine();
-			ImGui::Text(TOSTRING(NN).str);
+			ImGui::Text(toStr(NN).str);
 			ImGui::End();
 			
 		}
