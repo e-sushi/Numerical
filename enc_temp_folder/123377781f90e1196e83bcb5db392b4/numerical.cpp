@@ -363,6 +363,8 @@ void do_math() {
 			PRINTLN(toStr("dmom:  ", dummyDPoints[0].mom));
 			PRINTLN(toStr("d2pos: ", dummyD2PosPoints[0].pos));
 			PRINTLN(toStr("NLT:   ", dummyNLTList[0]));
+
+
 		}
 	}
 

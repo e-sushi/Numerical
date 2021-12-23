@@ -84,6 +84,7 @@
     <ClInclude Include="..\deshi\src\utils\string.h" />
     <ClInclude Include="..\deshi\src\utils\string_conversion.h" />
     <ClInclude Include="..\deshi\src\utils\tuple.h" />
+    <ClInclude Include="..\deshi\src\utils\type.h" />
     <ClInclude Include="..\deshi\src\utils\utils.h" />
     <ClInclude Include="..\deshi\src\utils\view.h" />
   </ItemGroup>

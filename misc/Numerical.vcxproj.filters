@@ -237,6 +237,9 @@
     <ClInclude Include="..\deshi\src\external\stb\stb_truetype.h">
       <Filter>src\deshi\external\stb</Filter>
     </ClInclude>
+    <ClInclude Include="..\deshi\src\utils\type.h">
+      <Filter>src\deshi\utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\deshi\src\deshi.cpp">
