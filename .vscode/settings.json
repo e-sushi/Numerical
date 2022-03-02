@@ -1,0 +1,127 @@
+{
+    "files.associations": {
+        "bitset": "cpp",
+        "charconv": "cpp",
+        "chrono": "cpp",
+        "exception": "cpp",
+        "format": "cpp",
+        "iomanip": "cpp",
+        "istream": "cpp",
+        "iterator": "cpp",
+        "locale": "cpp",
+        "memory": "cpp",
+        "sstream": "cpp",
+        "stdexcept": "cpp",
+        "string": "cpp",
+        "system_error": "cpp",
+        "typeinfo": "cpp",
+        "xiosbase": "cpp",
+        "xlocale": "cpp",
+        "xlocbuf": "cpp",
+        "xlocinfo": "cpp",
+        "xlocmes": "cpp",
+        "xlocmon": "cpp",
+        "xlocnum": "cpp",
+        "xloctime": "cpp",
+        "xstring": "cpp",
+        "execution": "cpp",
+        "filesystem": "cpp",
+        "xmemory": "cpp"
+    },
+
+    "editor.quickSuggestions": {
+        "other": false,
+        "comments": false,
+        "strings": false
+    },
+
+    
+    
+
+    "editor.tokenColorCustomizations": {
+            "[Absolute Black]": {
+                "textMateRules": [
+                    {
+                        "scope": "entity.name.function.preprocessor.cpp",
+                        "settings": {
+                            "foreground": "#ff0000",
+                            "fontStyle": ""
+                        },
+                    },
+                    {
+                        "scope": "meta.preprocessor.macro.cpp",
+                        "settings": {
+                            "foreground": "#ff0000",
+                            "fontStyle": ""
+                        },
+                    },
+                    {
+                        "scope": "keyword.control.directive.define.cpp",
+                        "settings": {
+                            "foreground": "#5f5c5c",
+                            "fontStyle": ""
+                        },
+                    },
+                    {
+                        "scope": "punctuation.definition.directive.cpp",
+                        "settings": {
+                            "foreground": "#5f5c5c",
+                            "fontStyle": ""
+                        },
+                    },
+                    {                                        
+                        "scope": "meta.conditional.case.cpp",
+                        "settings": {                        
+                            "foreground": "#aebd58",         
+                            "fontStyle": ""                  
+                        },                                   
+                    },                                       
+                    {                                        
+                        "scope": "keyword.control",
+                        "settings": {                        
+                            "foreground": "#1a8882",         
+                            "fontStyle": ""                  
+                        },                                   
+                    },
+                    {                                        
+                        "scope": "variable.other.enummember.cpp",
+                        "settings": {                        
+                            "foreground": "#1a8882",         
+                            "fontStyle": ""                  
+                        },                                   
+                    },
+                    {                                        
+                        "scope": "variable.other.global.cpp",
+                        "settings": {                        
+                            "foreground": "#93c967",         
+                            "fontStyle": ""                  
+                        },                                   
+                    },
+                    {                                        
+                        "scope": "variable.other.property.cpp",
+                        "settings": {                        
+                            "foreground": "#8fadc5",         
+                            "fontStyle": ""                  
+                        },                                   
+                    },
+                    {                                        
+                        "scope": "entity.name.namespace.cpp",
+                        "settings": {                        
+                            "foreground": "#3fb9bd",         
+                            "fontStyle": ""                  
+                        },                                   
+                    },
+                    {                                        
+                        "scope": "variable.other.local.cpp",
+                        "settings": {                        
+                            "foreground": "#63bb7d",         
+                            "fontStyle": ""                  
+                        },                                   
+                    }
+                ],
+            }
+    }
+    
+
+
+}

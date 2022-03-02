@@ -1,0 +1,68 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "windowsSdkVersion": "10.0.22000.0",
+            "compilerPath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\Hostx64\\x64\\cl.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-msvc-x64"
+        },
+        {
+            "name": "Win64",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:\\src\\graphviz\\include\\",
+                "C:\\src\\tracy-0.7.8",
+                "C:/src/glfw-3.3.2.bin.WIN64/include",
+                "C:/VulkanSDK/1.2.162.1/include"
+            ],
+            "defines": [
+                "TRACY_ENABLE",
+                "DESHI_SLOW=1",
+                "DESHI_INTERNAL=1",
+                "DESHI_WINDOWS=1",
+                "DESHI_DISABLE_IMGUI",
+                "DESHI_VULKAN=1"
+            ],
+            "windowsSdkVersion": "10.0.22000.0",
+            "compilerPath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\Hostx64\\x64\\cl.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-msvc-x64",
+            "compilerArgs": [
+                "/std:c++17"
+            ]
+        },
+        {
+            "name": "Win64 no tracy",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:\\src\\graphviz\\include\\",
+                "C:\\src\\tracy-0.7.8\\"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "windowsSdkVersion": "10.0.22000.0",
+            "compilerPath": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\Hostx64\\x64\\cl.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-msvc-x64",
+            "compilerArgs": [
+                "/std:c++17"
+            ]
+        }
+    ],
+    "version": 4
+}
