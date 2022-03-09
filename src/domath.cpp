@@ -267,6 +267,7 @@ void init_math() {
 	pointsStage.resize(2*Np);
 	pointsDStage.resize(2*Np);
 	pointsD2Stage.resize(2*Np);
+	NLTStage.resize(2*Np);
 
 	file.close();
 }

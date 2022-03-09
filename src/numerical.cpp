@@ -18,7 +18,16 @@ int main() {
 	init_math();
 
 	while(!deshi::shouldClose()){
+		DeshWindow->Update();
+		DeshTime->Update();
+		DeshInput->Update();
+		DeshiImGui::NewFrame();
+
 		show_math(do_math());
+
+		Render::Update();
+		memory_clear_temp();
+		
 	}
 
 	deshi::cleanup();

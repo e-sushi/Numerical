@@ -30,7 +30,6 @@
                 "DESHI_SLOW=1",
                 "DESHI_INTERNAL=1",
                 "DESHI_WINDOWS=1",
-                "DESHI_DISABLE_IMGUI",
                 "DESHI_VULKAN=1"
             ],
             "windowsSdkVersion": "10.0.22000.0",
