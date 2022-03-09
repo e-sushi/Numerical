@@ -5,8 +5,8 @@
             "name": "(Windows) Launch",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/debug/suugu.exe",
-            "args": [],
+            "program": "${workspaceFolder}/build/debug/numerical.exe",
+            "args": []i
             "stopAtEntry": false,
             "cwd": "${workspaceRoot}",
             "environment": [],
