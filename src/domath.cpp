@@ -197,77 +197,46 @@ array<Point> do_math() {
 
 }
 
-void init_math() {
-	//TODO replace std io with File from deshi 
-	using namespace std;
-	ifstream file;
-	file.open("src/initialdata/FSEinitialdata.csv");
-	std::string line;
-	
-	//gather global constants used to make initial data
-	forI(8) {
-		getline(file, line, (i == 8 - 1) ? '\n' : ',');
-		switch(i) {
-			case 0: dt = stod(line); continue; break;
-			case 1: Nt = stod(line); continue; break;
-			case 2: Bi = stod(line); continue; break;
-			case 3: Bf = stod(line); continue; break;
-			case 4: L  = stod(line); continue; break;
-			case 5: Np = stod(line); continue; break;
-			case 6: {
-				m   = stod(line);
-				mm  = m*m;
-				mmm = m*m*m;
-			}break;
-			case 7: {
-				g   = stod(line);
-				gg  = g*g;
-				ggg = g*g*g;
-			}break;
-		}
-	}
+void init_math(){
+	cstring file = read_entire_file("src/initialdata/FSEinitialdata.csv");
+	if(!file) return;
 
-	//Plist
-	forX(idx, Nt) {
-		getline(file, line, (idx == Nt - 1) ? '\n' : ',');
-		PList.add(stod(line));
-	}
-			
-	//psizero
-	forX(idx, 2 * Np) {
-		getline(file, line, (idx == 2 * Np - 1) ? '\n' : ',');
-		PsiZeroList.add(stod(line));
-	}
-			
-	//dpsizero
-	forX(idx, 2 * Np) {
-		getline(file, line, (idx == 2 * Np - 1) ? '\n' : ',');
-		dPsiZeroList.add(stod(line));
-	}
-			
-	forX(idx, 2 * Np - 1) {
-		getline(file, line, (idx == 2 * Np - 2) ? '\n' : ',');
-		ccList.add(stod(line));
-	}
-			
-	forX(idx, 2 * Np - 1) {
-		getline(file, line, (idx == 2 * Np - 2) ? '\n' : ',');
-		d2ccList.add(stod(line));
-	}
-			
-	forX(idx, 2 * Np) {
+	char* cursor = file.str;
+	dt = strtod(cursor,   &cursor);
+	Nt = strtod(cursor+1, &cursor);
+	Bi = strtod(cursor+1, &cursor);
+	Bf = strtod(cursor+1, &cursor);
+	L  = strtod(cursor+1, &cursor);
+	Np = strtod(cursor+1, &cursor);
+	m  = strtod(cursor+1, &cursor); mm = m*m; mmm = m*m*m;
+	g  = strtod(cursor+1, &cursor); gg = g*g; ggg = g*g*g;
+	Assert(*cursor == '\r' || *cursor == '\n');
+
+	forI(Nt) PList.add(strtod(cursor+1, &cursor));
+	Assert(*cursor == '\r' || *cursor == '\n');
+
+	forI(2*Np) PsiZeroList.add(strtod(cursor+1, &cursor));
+	Assert(*cursor == '\r' || *cursor == '\n');
+
+	forI(2*Np) dPsiZeroList.add(strtod(cursor+1, &cursor));
+	Assert(*cursor == '\r' || *cursor == '\n');
+
+	forI(2*Np-1) ccList.add(strtod(cursor+1, &cursor));
+	Assert(*cursor == '\r' || *cursor == '\n');
+
+	forI(2*Np-1) d2ccList.add(strtod(cursor+1, &cursor));
+	Assert(*cursor == '\r' || *cursor == '\n');
+
+	forI(2*Np){
 		Point nu;
-		getline(file, line, ',');
-		nu.pos = stod(line);
-		getline(file, line, ',');
-		nu.mom = stod(line);
+		nu.pos = strtod(cursor+1, &cursor);
+		nu.mom = strtod(cursor+1, &cursor);
 		points.add(nu);
 	}
+	Assert(*cursor == '\r' || *cursor == '\n');
 
 	pointsStage.resize(2*Np);
 	pointsDStage.resize(2*Np);
 	pointsD2Stage.resize(2*Np);
 	NLTStage.resize(2*Np);
-
-	file.close();
 }

@@ -1,5 +1,6 @@
 #include "kigu/common.h"
 #include "kigu/array.h"
+#include "core/io.h"
 
 #include <fstream>
 
