@@ -24,13 +24,14 @@ docs/doxygen/
 
 #data ignores
 data/*.*
-data/cfg/
-data/fonts/
-data/logs/
-data/models/
-#data/shaders/
-data/temp/
-data/textures/
+data/cfg/*
+data/fonts/*
+!data/fonts/gohufont-11.bdf
+data/logs/*
+data/models/*
+#data/shaders/*
+data/temp/*
+data/textures/*
 
 #specific files
 imgui.ini
