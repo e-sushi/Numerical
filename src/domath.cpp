@@ -11,7 +11,7 @@
 //NOTE currently (3/2/2022) these varaibles are gathered from the initial data file we generate using Mathematica
 // ideally we will generate initial data using C++ in the future, so these may need to be moved somewhere else later
 f64 dt; //= 0.01; // time step value
-u32 Nt; //= 50;   // how many time steps you're going to do 
+u32 Nt; //= 50;   // how many time steps you're going to do
 f64 Bi; //= 0;    // initial velocity as a fraction of speed of light
 f64 Bf; //= 0.9;  // final velocity
 f64 L;  //= 10;   // length of world
@@ -166,7 +166,6 @@ array<Point> do_math() {
 		//TODO Hsc and Hbar
 
 		{//do final RK step
-
 			//Here we evaluate the discretized Forced Soliton Equation. We apply
 			//\FF to the current staged points list and the result is stored in the 
 			//momi and posi arrays on the points. 
@@ -176,8 +175,8 @@ array<Point> do_math() {
 				pointsStage[j].momi[rki] = 
 					dt * 
 					((PList[NN + 1] + RS1) / (RS2 * RS2) * (pointsDStage[j].mom - RS4 * PsiZeroList[j]) - 
-					(((PList[NN + 1] + RS1) * ((PList[NN + 1] + RS1)) / (RS2 * RS2 * RS2) * dPsiZeroList[j] +
-										(pointsD2Stage[j].pos - NLTStage[j]) - RS3 * PsiZeroList[j])));
+					(((PList[NN + 1] + RS1) * ((PList[NN + 1] + RS1)) / (RS2 * RS2 * RS2) * dPsiZeroList[j] + 
+										(pointsD2Stage[j].pos - NLTStage[j]) - RS3 * PsiZeroList[j]))); 
 			}
 
 
@@ -186,10 +185,12 @@ array<Point> do_math() {
 
 	//Once we complete the 4 RK iterations we use them to construct the next time step.
 
-	for(Point& curp : points){
+	forI(points.count){
 		Point nu;
-		curp.pos = curp.pos + (1.0/6.0)*(curp.posi[0]+2*curp.posi[1]+2*curp.posi[2]+curp.posi[3]);
-		curp.mom = curp.mom + (1.0/6.0)*(curp.momi[0]+2*curp.momi[1]+2*curp.momi[2]+curp.momi[3]);
+		Point& curp = points[i];
+		Point curps = pointsStage[i];
+		curp.pos = curp.pos + (1.0/6.0)*(curps.posi[0]+2*curps.posi[1]+2*curps.posi[2]+curps.posi[3]);
+		curp.mom = curp.mom + (1.0/6.0)*(curps.momi[0]+2*curps.momi[1]+2*curps.momi[2]+curps.momi[3]);
 
 	}
 
@@ -212,7 +213,7 @@ void init_math(){
 	g  = strtod(cursor+1, &cursor); gg = g*g; ggg = g*g*g;
 	Assert(*cursor == '\r' || *cursor == '\n');
 
-	forI(Nt) PList.add(strtod(cursor+1, &cursor));
+	forI(Nt) PList.add(strtod(cursor+1, &cursor));\
 	Assert(*cursor == '\r' || *cursor == '\n');
 
 	forI(2*Np) PsiZeroList.add(strtod(cursor+1, &cursor));

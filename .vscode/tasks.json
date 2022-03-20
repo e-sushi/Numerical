@@ -41,6 +41,7 @@
                 "/Fo\"build/debug/\"",
                 "/Fd",
                 "/link",
+                "/MACHINE:X64",
                 "/nologo",
                 "/opt:ref",
                 "/incremental:no",

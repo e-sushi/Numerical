@@ -26,7 +26,8 @@
         "xstring": "cpp",
         "execution": "cpp",
         "filesystem": "cpp",
-        "xmemory": "cpp"
+        "xmemory": "cpp",
+        "ios": "cpp"
     },
 
     "editor.quickSuggestions": {
