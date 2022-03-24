@@ -38,7 +38,7 @@ int main() {
 			frame_show = Max(frame_show-1, 0);
 
 
-		show_math(frames[frame_show], frame_show + 1, frames.count);
+		show_math(frames);
 
 		UI::Update();
 		Render::Update();
