@@ -44,7 +44,7 @@ array<Point> nextPoints; //staging array
 //and their data is simply overwritten
 array<Point> pointsStage;
 array<Point> pointsDStage; //first derivative of point array
-array<Point> pointsD2Stage; //NOTE the only thing we actually take the second derivative of is momentum, so maybe just store that instead of the whole point
+array<Point> pointsD2Stage; //NOTE the only thing we actually take the second derivative of is position, so maybe just store that instead of the whole point
 array<f64>   NLTStage;
 
 //@functions
@@ -108,19 +108,18 @@ array<Point> do_math() {
 			//for the value cs (or equation (3.17) in the case of the second derivative).
 
 			//the first derivative
-			for(u32 j = 0; j < 2*Np; j++){
+			for(s32 j = 0; j < 2*Np; j++){
 				Point sum1,sum2;
-				for(u32 kk = 0; kk < j; kk++){
-					sum1.pos += ccList[j-1-kk]*pointsStage[kk].pos;
-					sum1.mom += ccList[j-1-kk]*pointsStage[kk].mom;
+				for(s32 kk = 0; kk < j-2; kk++){
+					sum1.pos += ccList[j-2-kk]*pointsStage[kk].pos;
+					sum1.mom += ccList[j-2-kk]*pointsStage[kk].mom;
 				}
-				for(u32 kk = j; kk < 2 * Np - 1; kk++){
-					sum2.pos += ccList[2*Np-2-kk+j]*pointsStage[kk+1].pos;
-					sum2.mom += ccList[2*Np-2-kk+j]*pointsStage[kk+1].mom;
+				for(s32 kk = j; kk < 2 * Np - 1; kk++){
+					sum2.pos += ccList[2*Np-2-kk+j]*pointsStage[kk].pos;
+					sum2.mom += ccList[2*Np-2-kk+j]*pointsStage[kk].mom;
 				}
 				sum1.pos-=sum2.pos;
 				sum1.mom-=sum2.mom;
-
 				pointsDStage[j] = sum1;
 			}
 
@@ -131,9 +130,9 @@ array<Point> do_math() {
 					sum1.pos += d2ccList[j-1-kk]*pointsStage[kk].pos;
 				}
 				for(u32 kk = j; kk < 2 * Np - 1; kk++){
-					sum2.pos += d2ccList[2*Np-2-kk+j]*pointsStage[kk+1].pos;
+					sum2.pos += d2ccList[2*Np-2-kk+j]*pointsStage[kk].pos;
 				}
-				sum1.pos+=(-(π * π)/(3.0*(4.0*Np*Np*dx*dx)) * (4.0*Np*Np-1)) * pointsStage[j].pos;
+				sum1.pos+=(-(π * π)/(3.0*(4.0*Np*Np*dx*dx)) * (4.0*Np*Np-1.0)) * pointsStage[j].pos;
 				sum1.pos-=sum2.pos;
 
 				pointsD2Stage[j] = sum1;
@@ -240,4 +239,9 @@ void init_math(){
 	pointsDStage.resize(2*Np);
 	pointsD2Stage.resize(2*Np);
 	NLTStage.resize(2*Np);
+
+	//forI(points.count){
+	//	points[i].pos = sin(2*π*i/L);
+	//	points[i].mom = 0;
+	//}
 }

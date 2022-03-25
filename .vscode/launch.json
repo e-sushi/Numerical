@@ -13,7 +13,7 @@
             "console": "internalConsole",
             "preLaunchTask": "cl build-debug",
             "internalConsoleOptions": "openOnSessionStart",
-            "visualizerFile": "${workspaceFolder}/src/utils/debugvis.natvis"
+            "visualizerFile": "${workspaceFolder}/src/deshi/kigu/debugvis.natvis"
         }
     ]
 }

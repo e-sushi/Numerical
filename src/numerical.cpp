@@ -14,7 +14,6 @@
 #include "showmath.cpp"
 
 #include <fstream>
-#include <limits>
 
 int main() {
 	deshi::init();

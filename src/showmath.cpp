@@ -25,13 +25,14 @@ void show_math(array<array<Point>>& frames) {
         UI::Text(toStr("frame: ", u32(frame)+1, " / ", frames.count).str);
 		UI::Text(toStr("time:  ", u32(frame)*dt).str);
 		UI::Slider("frame", &frame, 0, frames.count-1);
+		UI::Slider("dotsize", &g.dotSize, 1, 10);
 	
 		forI(frames[u32(frame)].count){
 			temp[i].x = i*L/(2*Np);
             temp[i].y = frames[u32(frame)][i].pos;
 		}
 		
-		draw_graph(g, UI::GetWindowRemainingSpace());
+		draw_graph(&g, UI::GetWindowRemainingSpace());
 		UIItem* gr = UI::GetLastItem();
 
 		static vec2 mp;
@@ -42,7 +43,7 @@ void show_math(array<array<Point>>& frames) {
 			gcp = g.cameraPosition;
 		}
 		if(mp!=vec2::ONE*FLT_MAX && DeshInput->LMouseDown()){
-			g.cameraPosition = gcp - (DeshInput->mousePos - mp) /  (g.dimensions_per_unit_length*g.aspect_ratio);
+			g.cameraPosition = gcp - (DeshInput->mousePos - mp) / (vec2g(g.dimensions_per_unit_length.x, g.dimensions_per_unit_length.x*g.aspect_ratio));
 		}
 		if(DeshInput->LMouseReleased()){
 			UI::SetAllowInputs();
